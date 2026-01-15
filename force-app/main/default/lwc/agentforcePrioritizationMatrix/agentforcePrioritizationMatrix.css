@@ -1,0 +1,82 @@
+.matrix-container {
+    width: 100%;
+    max-width: 100%;
+}
+
+.matrix-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Quadrant backgrounds (based on 800x600 viewBox, split in half by outer rects) */
+.quad {
+    fill-opacity: 0.06;
+}
+.q1 { fill: #3ba1ff; } /* top-left */
+.q2 { fill: #2ecc71; } /* top-right */
+.q3 { fill: #f1c40f; } /* bottom-left */
+.q4 { fill: #e74c3c; } /* bottom-right */
+
+.plot .border {
+    fill: none;
+    stroke: var(--lwc-colorBorder, #dddbda);
+    stroke-width: 1.5;
+}
+
+.axis-cross {
+    stroke: var(--lwc-colorBorder, #dddbda);
+    stroke-dasharray: 4 4;
+    stroke-width: 1.2;
+}
+
+.tick {
+    stroke: var(--lwc-colorTextWeak, #706e6b);
+    stroke-width: 1;
+}
+
+.tick-label {
+    fill: var(--lwc-colorTextWeak, #706e6b);
+    font-size: 12px;
+}
+
+.axis-label {
+    fill: var(--lwc-colorTextLabel, #3e3e3c);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.point-group {
+    cursor: pointer;
+    outline: none;
+}
+
+.point {
+    fill: var(--lwc-colorBackgroundAlt, #ffffff);
+    stroke: #1b96ff;
+    stroke-width: 2;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+}
+
+.point-group:focus .point,
+.point-group:hover .point {
+    stroke: #005fb2;
+    stroke-width: 2.5;
+}
+
+.label {
+    fill: var(--lwc-colorTextDefault, #181818);
+    font-size: 12px;
+    paint-order: stroke;
+    stroke: #ffffff;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+}
+
+/* Improve label readability on hover/focus */
+.point-group:hover .label,
+.point-group:focus .label {
+    font-weight: 600;
+}

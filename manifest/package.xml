@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>agentforcews__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>AgentforcePrioritizationController</members>
+        <members>AgentforceWSController</members>
+        <members>AgentWorkshopController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>agentforceIdeaGenerator</members>
+        <members>agentforceProcessMap</members>
+        <members>agentforcePrioritizationMatrix</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <version>65.0</version>
+</Package>

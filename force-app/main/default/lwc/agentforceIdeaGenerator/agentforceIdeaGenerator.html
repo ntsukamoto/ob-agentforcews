@@ -1,0 +1,102 @@
+<template>
+    <lightning-card title="Agentforce Idea Generator" icon-name="custom:custom63">
+        <!-- Input Section -->
+        <div class="section section-input">
+            <lightning-record-edit-form object-api-name="agentforcews__c" onsuccess={handleSuccess} onerror={handleError}>
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input-field field-name="Name"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input-field field-name="target__c"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input-field field-name="pain__c"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input-field field-name="agentrole__c"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input-field field-name="BusinessProcess__c"></lightning-input-field>
+                    </div>
+                </div>
+                <div class="slds-m-top_medium">
+                    <lightning-button type="submit" label="アイデアを保存" variant="brand"></lightning-button>
+               </div>
+            </lightning-record-edit-form>
+        </div>
+
+        <!-- Display Section -->
+        <div class="section section-list">
+            <lightning-layout multiple-rows>
+                <template if:true={agents}>
+                    <template for:each={agents} for:item="agent">
+                        <lightning-layout-item key={agent.id} size="12" medium-device-size="6" large-device-size="4" padding="around-small">
+                            <div class="bizcard" data-record-id={agent.id} onclick={openModal}>
+                                <div class="bizcard__header">
+                                    <span class="bizcard__name">{agent.name}</span>
+                                </div>
+                                <div class="bizcard__body">
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">Target:</span>
+                                        <span class="bizcard__value">{agent.target}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">Pain:</span>
+                                        <span class="bizcard__value">{agent.pain}</span>
+                                    </div>
+                                <div class="bizcard__row">
+                                    <span class="bizcard__label">Role:</span>
+                                    <span class="bizcard__value">{agent.agentRole}</span>
+                                </div>
+                                <div class="bizcard__row">
+                                    <span class="bizcard__label">ビジネスプロセス:</span>
+                                    <span class="bizcard__value">{agent.businessProcess}</span>
+                                </div>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </template>
+                <template if:false={agents}>
+                    <lightning-layout-item size="12" padding="around-small">
+                        <div class="slds-text-color_weak">まだレコードがありません。上のフォームから作成してください。</div>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </div>
+
+        <!-- Modal Dialog -->
+        <template if:true={isModalOpen}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_small">評価を入力</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning-record-edit-form object-api-name="agentforcews__c" record-id={selectedRecordId} onsuccess={handleModalSuccess} onerror={handleError}>
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-input-field field-name="businessimpact__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-input-field field-name="feasibility__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-input-field field-name="BusinessProcess__c"></lightning-input-field>
+                                </div>
+                            </div>
+                            <div class="slds-m-top_medium">
+                                <lightning-button type="submit" label="保存" variant="brand"></lightning-button>
+                            </div>
+                        </lightning-record-edit-form>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="キャンセル" variant="neutral" onclick={closeModal}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </lightning-card>
+</template>

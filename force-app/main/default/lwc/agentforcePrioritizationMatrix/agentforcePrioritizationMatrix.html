@@ -1,0 +1,70 @@
+<template>
+    <lightning-card title="Agentforce Prioritization Matrix">
+        <div class="slds-p-around_medium">
+            <template if:true={hasData}>
+                <div class="matrix-container" role="img" aria-label="Prioritization matrix with business impact on Y and feasibility on X">
+                    <!-- SVG keeps crisp lines and responsive scaling -->
+                    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" class="matrix-svg">
+                        <!-- Background quadrants -->
+                        <rect class="quad q1" x="0" y="0" width="400" height="300" />
+                        <rect class="quad q2" x="400" y="0" width="400" height="300" />
+                        <rect class="quad q3" x="0" y="300" width="400" height="300" />
+                        <rect class="quad q4" x="400" y="300" width="400" height="300" />
+
+                        <!-- Plot area with padding -->
+                        <g class="plot" transform={plotTransform}>
+                            <!-- Axes border -->
+                            <rect class="border" x="0" y="0" width={plotWidth} height={plotHeight}></rect>
+
+                            <!-- Crosshair at value 4 -->
+                            <line class="axis-cross" x1={xAt4} y1="0" x2={xAt4} y2={plotHeight}></line>
+                            <line class="axis-cross" x1="0" y1={yAt4} x2={plotWidth} y2={yAt4}></line>
+
+                            <!-- Ticks and labels (no function calls in template) -->
+                            <g class="ticks x">
+                                <template for:each={xTicks} for:item="xt">
+                                    <g key={xt.key} transform={xt.transform}>
+                                        <line class="tick" x1="0" y1={plotHeight} x2="0" y2={plotHeightMinus5}></line>
+                                        <text class="tick-label" data-key={xt.key} x="0" y={plotHeightPlus18} text-anchor="middle">{xt.t}</text>
+                                    </g>
+                                </template>
+                                <text class="axis-label" x={plotWidthHalf} y={plotHeightPlus42} text-anchor="middle">Feasibility</text>
+                            </g>
+                            <g class="ticks y">
+                                <template for:each={yTicks} for:item="yt">
+                                    <g key={yt.key} transform={yt.transform}>
+                                        <line class="tick" x1="0" y1="0" x2="5" y2="0"></line>
+                                        <text class="tick-label" data-key={yt.key} x="-12" y="4" text-anchor="end">{yt.t}</text>
+                                    </g>
+                                </template>
+                                <text class="axis-label" transform={yAxisLabelTransform}>Business Impact</text>
+                            </g>
+
+                            <!-- Points -->
+                            <template for:each={points} for:item="p">
+                                <g key={p.id}
+                                   class="point-group"
+                                   transform={p.transform}
+                                   data-id={p.id}
+                                   tabindex="0"
+                                   role="button"
+                                   aria-label={p.ariaLabel}
+                                   title={p.tooltip}
+                                   onclick={handleNavigate}
+                                   onkeydown={handleKeyNavigate}>
+                                    <circle class="point" r="5"></circle>
+                                    <text class="label" x="8" y="4">{p.name}</text>
+                                </g>
+                            </template>
+                        </g>
+                    </svg>
+                </div>
+            </template>
+            <template if:false={hasData}>
+                <div class="slds-text-body_regular slds-text-color_weak slds-align_absolute-center slds-p-vertical_large">
+                    No qualifying records. Ensure both Business Impact and Feasibility are set (1–7).
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
