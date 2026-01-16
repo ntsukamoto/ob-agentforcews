@@ -49,14 +49,28 @@
 }
 .bizcard__row {
     display: flex;
-    justify-content: space-between;
+    align-items: flex-start; /* 値が複数行になっても上揃えで整列 */
+    justify-content: flex-start;
+    gap: 0.5rem; /* ラベルと値の間隔を安定化 */
     font-size: 0.8rem;
     margin-top: 0.25rem;
 }
 .bizcard__label {
     color: #706e6b;
     margin-right: 0.5rem;
+    flex: 0 0 auto; /* ラベル幅は必要分だけ確保して縮まない */
+    max-width: 10rem; /* 任意: ラベルが極端に長い場合の上限 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .bizcard__value {
     color: #080707;
+    flex: 1 1 auto;     /* 残り幅を使用して折り返し */
+    min-width: 0;       /* Flex の折り返しを有効化 */
+    white-space: pre-line;      /* データ内の改行(\n)を表示し、自動折り返しも有効 */
+    overflow-wrap: anywhere;    /* 非常に長い単語/URLも改行 */
+    word-break: break-word;     /* 単語途中での改行を許可 */
+    hyphens: auto;              /* ハイフネーション（対応ブラウザ） */
+    line-height: 1.4;           /* 複数行でも可読性を確保 */
 }
