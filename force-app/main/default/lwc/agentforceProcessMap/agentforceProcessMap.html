@@ -1,13 +1,62 @@
 <template>
     <lightning-card title="Agentforce Process Map" icon-name="custom:custom63">
-        <div class="board slds-grid slds-wrap slds-gutters">
+        <div class="board">
             <!-- Column: 01 -->
-            <div class="column slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+            <div class="column slds-col slds-size_1-of-1">
                 <div class="column__header">
                     <span class="slds-text-title_bold">01.情報登録</span>
                 </div>
                 <div class="column__body">
-                    <template for:each={colStage01} for:item="rec">
+                    <div class="cards-grid">
+                        <template for:each={colStage01} for:item="rec">
+                                <article key={rec.id}
+                                         class="bizcard"
+                                         data-record-id={rec.id}
+                                         onclick={handleCardClick}
+                                         role="button"
+                                         tabindex="0">
+                                    <div class="bizcard__header">
+                                        <span class="bizcard__name">{rec.name}</span>
+                                    </div>
+                                    <div class="bizcard__body">
+                                        <!-- <div class="bizcard__row">
+                                            <span class="bizcard__label">ビジネスプロセス:</span>
+                                            <span class="bizcard__value">{rec.businessProcess}</span>
+                                        </div>
+                                        <div class="bizcard__row">
+                                            <span class="bizcard__label">ビジネスインパクト:</span>
+                                            <span class="bizcard__value">{rec.businessImpact}</span>
+                                        </div>
+                                        <div class="bizcard__row">
+                                            <span class="bizcard__label">実現性:</span>
+                                            <span class="bizcard__value">{rec.feasibility}</span>
+                                        </div> -->
+                                        <div class="bizcard__row">
+                                            <span class="bizcard__label">ターゲット:</span>
+                                            <span class="bizcard__value">{rec.target}</span>
+                                        </div><div class="bizcard__row">
+                                            <span class="bizcard__label">ビジネス課題:</span>
+                                            <span class="bizcard__value">{rec.pain}</span>
+                                        </div>
+                                        <div class="bizcard__row">
+                                            <span class="bizcard__label">エージェント役割:</span>
+                                            <span class="bizcard__value">{rec.agentRole}</span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </template>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column: 02 -->
+            <div class="column slds-col slds-size_1-of-1">
+                <div class="column__header">
+                    <span class="slds-text-title_bold">02.受注検討</span>
+                </div>
+                <div class="column__body">
+                    <div class="cards-grid">
+                        <template for:each={colStage02} for:item="rec">
                             <article key={rec.id}
                                      class="bizcard"
                                      data-record-id={rec.id}
@@ -33,7 +82,8 @@
                                     <div class="bizcard__row">
                                         <span class="bizcard__label">ターゲット:</span>
                                         <span class="bizcard__value">{rec.target}</span>
-                                    </div><div class="bizcard__row">
+                                    </div>
+                                    <div class="bizcard__row">
                                         <span class="bizcard__label">ビジネス課題:</span>
                                         <span class="bizcard__value">{rec.pain}</span>
                                     </div>
@@ -44,229 +94,191 @@
                                 </div>
                             </article>
                         </template>
-                </div>
-            </div>
-
-            <!-- Column: 02 -->
-            <div class="column slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-6">
-                <div class="column__header">
-                    <span class="slds-text-title_bold">02.受注検討</span>
-                </div>
-                <div class="column__body">
-                    <template for:each={colStage02} for:item="rec">
-                        <article key={rec.id}
-                                 class="bizcard"
-                                 data-record-id={rec.id}
-                                 onclick={handleCardClick}
-                                 role="button"
-                                 tabindex="0">
-                            <div class="bizcard__header">
-                                <span class="bizcard__name">{rec.name}</span>
-                            </div>
-                            <div class="bizcard__body">
-                                <!-- <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネスプロセス:</span>
-                                    <span class="bizcard__value">{rec.businessProcess}</span>
-                                </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネスインパクト:</span>
-                                    <span class="bizcard__value">{rec.businessImpact}</span>
-                                </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">実現性:</span>
-                                    <span class="bizcard__value">{rec.feasibility}</span>
-                                </div> -->
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ターゲット:</span>
-                                    <span class="bizcard__value">{rec.target}</span>
-                                </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネス課題:</span>
-                                    <span class="bizcard__value">{rec.pain}</span>
-                                </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">エージェント役割:</span>
-                                    <span class="bizcard__value">{rec.agentRole}</span>
-                                </div>
-                            </div>
-                        </article>
-                    </template>
+                    </div>
                 </div>
             </div>
 
             <!-- Column: 03 -->
-            <div class="column slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+            <div class="column slds-col slds-size_1-of-1">
                 <div class="column__header">
                     <span class="slds-text-title_bold">03.受注前原価検討</span>
                 </div>
                 <div class="column__body">
-                    <template for:each={colStage03} for:item="rec">
-                        <article key={rec.id}
-                                 class="bizcard"
-                                 data-record-id={rec.id}
-                                 onclick={handleCardClick}
-                                 role="button"
-                                 tabindex="0">
-                            <div class="bizcard__header">
-                                <span class="bizcard__name">{rec.name}</span>
-                            </div>
-                            <div class="bizcard__body">
-                                <!-- <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネスプロセス:</span>
-                                    <span class="bizcard__value">{rec.businessProcess}</span>
+                    <div class="cards-grid">
+                        <template for:each={colStage03} for:item="rec">
+                            <article key={rec.id}
+                                     class="bizcard"
+                                     data-record-id={rec.id}
+                                     onclick={handleCardClick}
+                                     role="button"
+                                     tabindex="0">
+                                <div class="bizcard__header">
+                                    <span class="bizcard__name">{rec.name}</span>
                                 </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネスインパクト:</span>
-                                    <span class="bizcard__value">{rec.businessImpact}</span>
+                                <div class="bizcard__body">
+                                    <!-- <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネスプロセス:</span>
+                                        <span class="bizcard__value">{rec.businessProcess}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネスインパクト:</span>
+                                        <span class="bizcard__value">{rec.businessImpact}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">実現性:</span>
+                                        <span class="bizcard__value">{rec.feasibility}</span>
+                                    </div> -->
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ターゲット:</span>
+                                        <span class="bizcard__value">{rec.target}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネス課題:</span>
+                                        <span class="bizcard__value">{rec.pain}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">エージェント役割:</span>
+                                        <span class="bizcard__value">{rec.agentRole}</span>
+                                    </div>
                                 </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">実現性:</span>
-                                    <span class="bizcard__value">{rec.feasibility}</span>
-                                </div> -->
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ターゲット:</span>
-                                    <span class="bizcard__value">{rec.target}</span>
-                                </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネス課題:</span>
-                                    <span class="bizcard__value">{rec.pain}</span>
-                                </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">エージェント役割:</span>
-                                    <span class="bizcard__value">{rec.agentRole}</span>
-                                </div>
-                            </div>
-                        </article>
-                    </template>
+                            </article>
+                        </template>
+                    </div>
                 </div>
             </div>
 
             <!-- Column: 04 -->
-            <div class="column slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+            <div class="column slds-col slds-size_1-of-1">
                 <div class="column__header">
                     <span class="slds-text-title_bold">04.受注決済</span>
                 </div>
                 <div class="column__body">
-                    <template for:each={colStage04} for:item="rec">
-                        <article key={rec.id}
-                                 class="bizcard"
-                                 data-record-id={rec.id}
-                                 onclick={handleCardClick}
-                                 role="button"
-                                 tabindex="0">
-                            <div class="bizcard__header">
-                                <span class="bizcard__name">{rec.name}</span>
-                            </div>
-                            <div class="bizcard__body">
-                                <!-- <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネスプロセス:</span>
-                                    <span class="bizcard__value">{rec.businessProcess}</span>
+                    <div class="cards-grid">
+                        <template for:each={colStage04} for:item="rec">
+                            <article key={rec.id}
+                                     class="bizcard"
+                                     data-record-id={rec.id}
+                                     onclick={handleCardClick}
+                                     role="button"
+                                     tabindex="0">
+                                <div class="bizcard__header">
+                                    <span class="bizcard__name">{rec.name}</span>
                                 </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネスインパクト:</span>
-                                    <span class="bizcard__value">{rec.businessImpact}</span>
+                                <div class="bizcard__body">
+                                    <!-- <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネスプロセス:</span>
+                                        <span class="bizcard__value">{rec.businessProcess}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネスインパクト:</span>
+                                        <span class="bizcard__value">{rec.businessImpact}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">実現性:</span>
+                                        <span class="bizcard__value">{rec.feasibility}</span>
+                                    </div> -->
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ターゲット:</span>
+                                        <span class="bizcard__value">{rec.target}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネス課題:</span>
+                                        <span class="bizcard__value">{rec.pain}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">エージェント役割:</span>
+                                        <span class="bizcard__value">{rec.agentRole}</span>
+                                    </div>
                                 </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">実現性:</span>
-                                    <span class="bizcard__value">{rec.feasibility}</span>
-                                </div> -->
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ターゲット:</span>
-                                    <span class="bizcard__value">{rec.target}</span>
-                                </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネス課題:</span>
-                                    <span class="bizcard__value">{rec.pain}</span>
-                                </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">エージェント役割:</span>
-                                    <span class="bizcard__value">{rec.agentRole}</span>
-                                </div>
-                            </div>
-                        </article>
-                    </template>
+                            </article>
+                        </template>
+                    </div>
                 </div>
             </div>
 
             <!-- Column: 05 -->
-            <div class="column slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+            <div class="column slds-col slds-size_1-of-1">
                 <div class="column__header">
                     <span class="slds-text-title_bold">05.受注活動完了</span>
                 </div>
                 <div class="column__body">
-                    <template for:each={colStage05} for:item="rec">
-                        <article key={rec.id}
-                                 class="bizcard"
-                                 data-record-id={rec.id}
-                                 onclick={handleCardClick}
-                                 role="button"
-                                 tabindex="0">
-                            <div class="bizcard__header">
-                                <span class="bizcard__name">{rec.name}</span>
-                            </div>
-                            <div class="bizcard__body">
-                                <!-- <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネスプロセス:</span>
-                                    <span class="bizcard__value">{rec.businessProcess}</span>
+                    <div class="cards-grid">
+                        <template for:each={colStage05} for:item="rec">
+                            <article key={rec.id}
+                                     class="bizcard"
+                                     data-record-id={rec.id}
+                                     onclick={handleCardClick}
+                                     role="button"
+                                     tabindex="0">
+                                <div class="bizcard__header">
+                                    <span class="bizcard__name">{rec.name}</span>
                                 </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネスインパクト:</span>
-                                    <span class="bizcard__value">{rec.businessImpact}</span>
+                                <div class="bizcard__body">
+                                    <!-- <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネスプロセス:</span>
+                                        <span class="bizcard__value">{rec.businessProcess}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネスインパクト:</span>
+                                        <span class="bizcard__value">{rec.businessImpact}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">実現性:</span>
+                                        <span class="bizcard__value">{rec.feasibility}</span>
+                                    </div> -->
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ターゲット:</span>
+                                        <span class="bizcard__value">{rec.target}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネス課題:</span>
+                                        <span class="bizcard__value">{rec.pain}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">エージェント役割:</span>
+                                        <span class="bizcard__value">{rec.agentRole}</span>
+                                    </div>
                                 </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">実現性:</span>
-                                    <span class="bizcard__value">{rec.feasibility}</span>
-                                </div> -->
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ターゲット:</span>
-                                    <span class="bizcard__value">{rec.target}</span>
-                                </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネス課題:</span>
-                                    <span class="bizcard__value">{rec.pain}</span>
-                                </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">エージェント役割:</span>
-                                    <span class="bizcard__value">{rec.agentRole}</span>
-                                </div>
-                            </div>
-                        </article>
-                    </template>
+                            </article>
+                        </template>
+                    </div>
                 </div>
             </div>
 
             <!-- Column: 06 -->
-            <div class="column slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-6">
+            <div class="column slds-col slds-size_1-of-1">
                 <div class="column__header">
                     <span class="slds-text-title_bold">06.受注後予算検討</span>
                 </div>
                 <div class="column__body">
-                    <template for:each={colStage06} for:item="rec">
-                        <article key={rec.id}
-                                 class="bizcard"
-                                 data-record-id={rec.id}
-                                 onclick={handleCardClick}
-                                 role="button"
-                                 tabindex="0">
-                            <div class="bizcard__header">
-                                <span class="bizcard__name">{rec.name}</span>
-                            </div>
-                            <div class="bizcard__body">
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネスプロセス:</span>
-                                    <span class="bizcard__value">{rec.businessProcess}</span>
+                    <div class="cards-grid">
+                        <template for:each={colStage06} for:item="rec">
+                            <article key={rec.id}
+                                     class="bizcard"
+                                     data-record-id={rec.id}
+                                     onclick={handleCardClick}
+                                     role="button"
+                                     tabindex="0">
+                                <div class="bizcard__header">
+                                    <span class="bizcard__name">{rec.name}</span>
                                 </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">ビジネスインパクト:</span>
-                                    <span class="bizcard__value">{rec.businessImpact}</span>
+                                <div class="bizcard__body">
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネスプロセス:</span>
+                                        <span class="bizcard__value">{rec.businessProcess}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">ビジネスインパクト:</span>
+                                        <span class="bizcard__value">{rec.businessImpact}</span>
+                                    </div>
+                                    <div class="bizcard__row">
+                                        <span class="bizcard__label">実現性:</span>
+                                        <span class="bizcard__value">{rec.feasibility}</span>
+                                    </div>
                                 </div>
-                                <div class="bizcard__row">
-                                    <span class="bizcard__label">実現性:</span>
-                                    <span class="bizcard__value">{rec.feasibility}</span>
-                                </div>
-                            </div>
-                        </article>
-                    </template>
+                            </article>
+                        </template>
+                    </div>
                 </div>
             </div>
         </div>
