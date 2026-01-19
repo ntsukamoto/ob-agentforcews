@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <!-- Lightning App (from AppDefinition result) -->
+        <members>Agentforce_Workshop</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <!-- Custom Tabs discovered in TabDefinition -->
+        <!-- custom object tab -->
+        <members>agentforcews__c</members>
+        <!-- custom web/Lightning tabs -->
+        <members>Agentforce</members>
+        <members>Agentforce_Workshop</members>
+        <!-- standard tab (AgentforceStudio) is not retrievable as CustomTab; omit -->
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <!-- Lightning pages included in the app (from FlexiPage via Tooling API) -->
+        <members>Agentforce_IdeaGen</members>
+        <name>FlexiPage</name>
+    </types>
+    <version>60.0</version>
+</Package>
