@@ -18,6 +18,7 @@
     <types>
         <!-- Lightning pages included in the app (from FlexiPage via Tooling API) -->
         <members>Agentforce_IdeaGen</members>
+        <members>Agentforce_Workshop_UtilityBar</members>
         <name>FlexiPage</name>
     </types>
     <version>60.0</version>
